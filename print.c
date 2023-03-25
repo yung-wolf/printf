@@ -9,13 +9,12 @@
 */
 int _strlen(char *str)
 {
-    int i;
+	int i;
 
-    for (i = 0; *(str + i); i++)
-        ;
-    i++;
-
-    return (i);
+	for (i = 0; *(str + i); i++)
+		;
+	i++;
+	return (i);
 }
 
 /**
@@ -37,7 +36,7 @@ int _putchar(char c)
 */
 int my_printf(char *str)
 {
-    return (write(1, str, _strlen(str)));
+	return (write(1, str, _strlen(str)));
 }
 
 /**
@@ -47,34 +46,34 @@ int my_printf(char *str)
 */
 int _printf(const char *format, ...)
 {
-    va_list args; // init optional arg 
-    va_start(args, format);
+	va_list args;
 
-    while (*format) // run while format-string has chars
-    {
-        if (*format != '%') // if no % print char
-            _putchar(*format);
-        else    // else check if % is 'c' / 's'
-        {
-            if (*(format + 1) == '%')
-            {
-                _putchar('%');
-                format++;
-            }
-            if (*(format + 1) == 'c')
-            {   
-                _putchar(va_arg(args, int));
-                format++; // skips the 'c' after % in (%c)
-            }
-            if (*(format + 1) == 's')
-            {
-                my_printf(va_arg(args, char*));
-                format++; // skips the 's' after % in (%c)
-            }
-        }
-        format++;
-    }
-    va_end(args); // clean up list args and release memory.
+	va_start(args, format);
+	while (*format)
+	{
+		if (*format != '%')
+		_putchar(*format);
+		else
+		{
+			if (*(format + 1) == '%')
+			{
+				_putchar('%');
+				format++;
+			}
+			if (*(format + 1) == 'c')
+			{
+				_putchar(va_arg(args, int));
+				format++;
+			}
+			if (*(format + 1) == 's')
+			{
+				my_printf(va_arg(args, char*));
+				format++;
+			}
+		}
+		format++;
+	}
+	va_end(args);
 
-    return (0);
+	return (0);
 }
