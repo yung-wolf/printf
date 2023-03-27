@@ -1,24 +1,12 @@
 #include "main.h"
 /**
- * print_c - returns char as string
- * @list: char
- * Return: String verion of char
+ * _write_char - writes the character c to stdout
+ * @c: The character to print
+ *
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
-char *print_c(va_list list)
+int _write_char(char c)
 {
-	char *s;
-	char c;
-
-	c = va_arg(list, int);
-
-	if (c == 0)
-		c = '\0';
-
-	s = malloc(sizeof(char) * 2);
-	if (s == NULL)
-		return (NULL);
-	s[0] = c;
-	s[1] = '\0';
-
-	return (s);
+	return (write(1, &c, 1));
 }
